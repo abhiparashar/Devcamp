@@ -2,6 +2,7 @@ const express = require("express")
 const morgan = require('morgan')
 const colors = require('colors')
 const bodyParser = require('body-parser')
+const errorHandler = require('./middleware/error')
 const connectDB = require('./config/db');
 
 //Load env variables
@@ -11,7 +12,7 @@ require("dotenv").config();
 connectDB();
 
 //Route files
-const bootcamp = require("./routes/bootcamps");
+const bootcamps = require("./routes/bootcamps");
 
 const app = express()
 
@@ -22,8 +23,8 @@ app.use(express.json())
 app.use(morgan('dev'))
 
 //middlewares
-app.use(morgan('dev'));
-app.use("/api/v1", bootcamp);
+app.use("/api/v1", bootcamps);
+app.use(errorHandler);
 
 
 const port = process.env.PORT || 8888
