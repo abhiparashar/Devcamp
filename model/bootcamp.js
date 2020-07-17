@@ -16,6 +16,10 @@ const BootcampSchema = new mongoose.Schema({
   },
   website: {
     type: String,
+    match: [
+      /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/,
+      "Please use a valid URL with HTTP or HTTPS",
+    ],
   },
   phone: {
     type: String,
@@ -23,6 +27,10 @@ const BootcampSchema = new mongoose.Schema({
   },
   email: {
     type: String,
+    match: [
+      /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+      "Please add a valid email",
+    ],
   },
   address: {
     type: String,
@@ -33,11 +41,9 @@ const BootcampSchema = new mongoose.Schema({
     type: {
       type: String,
       enum: ["point"],
-      required: false,
     },
     coordinates: {
       type: [Number],
-      required: false,
       index: "2dsphere",
     },
     formattedaddress: String,
@@ -50,14 +56,14 @@ const BootcampSchema = new mongoose.Schema({
   careers: {
     //Array of strings
     type: [String],
-    required: false,
+    required: true,
     enum: [
-      "web development",
-      "mobile development",
+      "Web Development",
+      "Mobile Development",
       "UI/UX",
       "Data Science",
       "Business",
-      "other",
+      "Other",
     ],
   },
   averageRating: {

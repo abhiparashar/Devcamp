@@ -35,7 +35,7 @@ const importDB = async(res,err) => {
 //deleted from databse
 const destroyDB = async (res, err) => {
   try {
-    await Bootcamp.deleteMany(bootcamps);
+    await Bootcamp.deleteMany();
     console.log("Data deleted...".red);
   } catch (err) {
             console.error(err);
