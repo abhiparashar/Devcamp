@@ -68,28 +68,28 @@ const BootcampSchema = new mongoose.Schema({
   averageCost: Number,
   photo: {
     type: String,
-    default: "no-photo.jpg"
+    default: "no-photo.jpg",
   },
   housing: {
     type: Boolean,
-    default: false
+    default: false,
   },
   jobAssistance: {
     type: Boolean,
-    default: false
+    default: false,
   },
-  jobGuarantee:{
+  jobGuarantee: {
     type: Boolean,
-    default: false
+    default: false,
   },
-  acceptGi:{
-      type:Boolean,
-      default:false
+  acceptGi: {
+    type: Boolean,
+    default: false,
   },
-  createdAt:{
-      type:Date,
-      default:Date.now
-  }
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 module.exports = mongoose.model("Bootcamp", BootcampSchema);
