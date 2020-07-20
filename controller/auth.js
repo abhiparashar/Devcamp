@@ -13,3 +13,30 @@ exports.register = asyncHandler(async(req,res,next)=>{
       token
     });
 })
+
+exports.login = asyncHandler(async(req,res,next)=>{
+    const{email,password} = req.body
+    //validate email and password
+    if(!email||!password){
+        return res.json(new ErrorResponse('Please provide email and password',400))
+    }
+    //check for user
+    const user = await User.findOne({email}).select('+password')
+    if(!user){
+        return res.json(
+          new ErrorResponse("Invalid credentials", 401)
+        );
+    }
+    //Match the password
+    const isMatch = await user.matchPassword(password);
+    //if does not match
+    if(!isMatch){
+         return res.json(new ErrorResponse("Invalid credentials", 401));
+    }
+    //Create token
+    const token = user.getSignedJwtToken();
+    res.status(200).json({
+      success: true,
+      token,
+    });
+})

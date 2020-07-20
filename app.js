@@ -1,12 +1,12 @@
+require("dotenv").config();
+require("colors");
 const express = require("express")
 const morgan = require('morgan')
-const colors = require('colors')
 const bodyParser = require('body-parser')
 const errorHandler = require('./middleware/error')
 const connectDB = require('./config/db');
 
 //Load env variables
-require("dotenv").config();
 
 //db
 connectDB();
