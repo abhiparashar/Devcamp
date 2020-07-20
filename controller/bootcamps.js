@@ -1,4 +1,4 @@
-const Bootcamp = require('../model/bootcamp')
+const Bootcamp = require('../model/Bootcamp')
 const ErrorResponse = require('../utils/errorResponse');
 
 exports.getBootcamps = async(req, res, next) => {

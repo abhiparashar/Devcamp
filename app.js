@@ -1,4 +1,3 @@
-require("dotenv").config();
 require("colors");
 const express = require("express")
 const morgan = require('morgan')
@@ -6,6 +5,8 @@ const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const errorHandler = require('./middleware/error')
 const connectDB = require('./config/db');
+require("dotenv").config();
+
 
 //db
 connectDB();
