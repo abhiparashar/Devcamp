@@ -3,15 +3,11 @@ const User = require('../model/User')
 const ErrorResponse = require('../utils/errorResponse');
 const asyncHandler = require('../middleware/asyncHandler');
 
+
 exports.register = asyncHandler(async(req,res,next)=>{
     const { name,email,password,role} = req.body
     const user = await User.create({ name, email, password, role})
-    //create a token
-    const token = user.getSignedJwtToken();
-    res.status(200).json({
-      success: true,
-      token
-    });
+    sendtokenResponse(user, 200, res);
 })
 
 exports.login = asyncHandler(async(req,res,next)=>{
@@ -33,10 +29,23 @@ exports.login = asyncHandler(async(req,res,next)=>{
     if(!isMatch){
          return res.json(new ErrorResponse("Invalid credentials", 401));
     }
-    //Create token
-    const token = user.getSignedJwtToken();
-    res.status(200).json({
-      success: true,
-      token,
-    });
+   sendtokenResponse(user,200,res)
 })
+
+//create a toeken and cookie
+const sendtokenResponse = (user,statusCode,res)=>{
+  //create a token
+  const token = user.getSignedJwtToken();
+  //create a cookie
+  const options = {
+    expires: new Date(
+      Date.now() + process.env.JWT_EXPIRE_COOKIE * 24 * 60 * 60 * 1000
+    ),
+    httpOnly: true,
+  };
+
+  res.status(statusCode).cookie('token', token, options).json({
+    success: true,
+    token
+  });
+}

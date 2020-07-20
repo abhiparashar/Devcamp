@@ -3,10 +3,9 @@ require("colors");
 const express = require("express")
 const morgan = require('morgan')
 const bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser')
 const errorHandler = require('./middleware/error')
 const connectDB = require('./config/db');
-
-//Load env variables
 
 //db
 connectDB();
@@ -19,6 +18,7 @@ const app = express()
 
 //Body-parser
 app.use(express.json())
+app.use(cookieParser())
 
 //Dev logging middleware
 app.use(morgan('dev'))
