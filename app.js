@@ -14,6 +14,7 @@ connectDB();
 //Route files
 const bootcamps = require("./routes/bootcamps");
 const authRoute = require("./routes/auth")
+const courses = require("./routes/courses")
 
 const app = express()
 
@@ -26,7 +27,9 @@ app.use(morgan('dev'))
 
 //middlewares
 app.use("/api/v1/bootcamps", bootcamps);
+app.use("/api/v1/courses", courses);
 app.use("/api/v1/auth", authRoute);
+
 app.use(errorHandler);
 
 
