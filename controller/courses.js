@@ -2,7 +2,6 @@ const Course = require("../model/Course");
 const Bootcamp = require("../model/Bootcamp")
 const asyncHandler = require('../middleware/asyncHandler')
 const ErrorResponse = require("../utils/errorResponse");
-const { exists } = require("../model/Course");
 
 exports.getCourses = asyncHandler(async (req, res, next) => {
   let query;
