@@ -20,6 +20,7 @@
     "express-fileupload": "^1.1.7-alpha.4",
     "geo-coder": "^1.0.2",
     "jsonwebtoken": "^8.5.1",
+    "mapquest": "^0.2.0",
     "mapquest-geocoder": "^1.1.0",
     "mongoose": "^5.9.24",
     "morgan": "^1.10.0",
